@@ -1,5 +1,6 @@
 import { makeMax, makeMaxChar, makeDigitsOnly, makeBreaks } from "./autofixers";
 import { isLength } from "./validators";
+import { VISA_CARD_TYPE } from "../constants";
 
 const CARD_TYPES = {
   visa: {
@@ -14,7 +15,7 @@ const CARD_TYPES = {
   }
 };
 
-const DEFAULT_CARD = "visa";
+const DEFAULT_CARD = VISA_CARD_TYPE;
 
 export const getAutofixers = ({ type }) => {
   const { cardLength, breaks, cvv2Length } = CARD_TYPES[type || DEFAULT_CARD];

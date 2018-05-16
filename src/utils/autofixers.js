@@ -1,7 +1,7 @@
 const getWhiteSpaceCount = value => (value.match(/ /g) || []).length;
 
 export const makeMaxChar = max => value =>
-  value.replace(/ /g, "").length > max
+  value.length > max + getWhiteSpaceCount(value)
     ? value.slice(0, max + getWhiteSpaceCount(value))
     : value;
 

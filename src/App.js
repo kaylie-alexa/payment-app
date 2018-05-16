@@ -11,6 +11,7 @@ import {
 } from "./components/helpers";
 import { isValidExpiration, isProvided } from "./utils/validators";
 import { getAutofixers, getValidations } from "./utils";
+import { VISA_CARD_TYPE, AMEX_CARD_TYPE } from "./constants";
 
 class App extends Component {
   state = {
@@ -26,9 +27,9 @@ class App extends Component {
     let type;
 
     if (value.startsWith("4")) {
-      type = "visa";
+      type = VISA_CARD_TYPE;
     } else if (value.startsWith("34") || value.startsWith("37")) {
-      type = "amex";
+      type = AMEX_CARD_TYPE;
     }
 
     this.setState({ type, cardNumber: value });
@@ -154,22 +155,14 @@ class App extends Component {
           />
         </FlexContainer>
         <FlexContainer>
-          <Logo src="./visa.png" alt="Visa" active={type === "visa"} />
-          <Logo
-            src="./mastercard.png"
-            alt="Mastercard"
-            active={type === "mastercard"}
-          />
+          <Logo src="./visa.png" alt="Visa" active={type === VISA_CARD_TYPE} />
+          <Logo src="./mastercard.png" alt="Mastercard" />
           <Logo
             src="./amex.png"
             alt="American Express"
-            active={type === "amex"}
+            active={type === AMEX_CARD_TYPE}
           />
-          <Logo
-            src="./discover.png"
-            alt="Discover"
-            active={type === "discover"}
-          />
+          <Logo src="./discover.png" alt="Discover" />
         </FlexContainer>
         <Annotation success={valid}>{annotation}</Annotation>
         <Button type="submit" disabled={!valid} onClick={this._handleValidate}>
